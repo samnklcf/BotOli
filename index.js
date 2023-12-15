@@ -262,6 +262,34 @@ manager.addAnswer('fr', 'au_revoir', 'Adieu ! Prenez soin de vous.');
 manager.addAnswer('fr', 'au_revoir', "A bientôt ! N'hésitez pas si vous avez besoin d'aide.");
 manager.addAnswer('fr', 'au_revoir', 'Bye ! Passez une excellente journée.');
 
+manager.addDocument('fr', 'Quelle est ta mission?', 'mission');
+manager.addDocument('fr', 'Parle-moi de ta mission', 'mission');
+manager.addDocument('fr', 'Pourquoi as-tu été créé?', 'mission');
+manager.addDocument('fr', 'Quelle est ton rôle?', 'mission');
+manager.addDocument('fr', 'Parle-moi de ton rôle', 'mission');
+
+manager.addDocument('fr', "Qu'est-ce que la DGS ?", 'description_dgs');
+manager.addDocument('fr', "Qu'est-ce que la Direction Générale Statistique ?", 'description_dgs');
+manager.addDocument('fr', 'Parle-moi de la Direction Générale Statistique', 'description_dgs');
+manager.addDocument('fr', 'Parle-moi de la DGS', 'description_dgs');
+manager.addDocument('fr', 'Quelle est la mission de la DGS ?', 'description_dgs');
+manager.addDocument('fr', 'Explique la DGS', 'description_dgs');
+manager.addDocument('fr', 'DGS', 'description_dgs');
+
+manager.addDocument('fr', 'Les missions de la DGS', 'mission_dgs');
+manager.addDocument('fr', 'La DGS, quelle est votre mission', 'mission_dgs');
+manager.addDocument('fr', 'Quelles sont les missions de la DGS ?', 'mission_dgs');
+manager.addDocument('fr', 'Expliquez les fonctions de la DGS', 'mission_dgs');
+manager.addDocument('fr', 'Décret N° 00718/PR/MPAT du 31 mai 1983', 'mission_dgs');
+
+// Ajouter une réponse pour la mission de la DGS
+manager.addAnswer('fr', 'mission_dgs', "Selon le décret N° 00718/PR/MPAT du 31 mai 1983, la Direction Générale de la Statistique a pour mission de mettre en œuvre la politique du Gouvernement dans le domaine de la Statistique. A ce titre, elle est notamment chargée de :\n\n- Produire, analyser et diffuser les statistiques officielles ;\n- Mener des enquêtes périodiques ou ponctuelles d’intérêt général auprès des Entreprises ou des Ménages ;\n- Mesurer les principaux indicateurs économiques du Gabon, d’en produire et d’en publier les indices ;\n- Organiser les opérations de recensement de la population et d’en assurer la publication ;\n- Estimer le solde migratoire ;\n- Gérer les répertoires nationaux d’identification des individus et des Entreprises, en collaboration avec les Administrations et des Organismes compétents ;\n- Assurer la diffusion et la publication des études et autres Informations Statistiques ;\n- Définir et harmoniser avec les autres Organismes des Pays de la sous-région les standards et les données statistiques ;\n- Collaborer avec les autres Administrations les Instituts Nationaux, Sous-Régionaux et Internationaux de Recherches Statistiques.");
+manager.addAnswer('fr', 'mission_dgs', "La mission de la Direction Générale de la Statistique, en vertu du décret N° 00718/PR/MPAT du 31 mai 1983, englobe la production, l'analyse et la diffusion des statistiques officielles, ainsi que la réalisation d'enquêtes d’intérêt général et la publication des résultats.");
+manager.addAnswer('fr', 'mission_dgs', "Selon les dispositions du décret N° 00718/PR/MPAT du 31 mai 1983, la Direction Générale de la Statistique est chargée de mesurer les principaux indicateurs économiques du Gabon, d'organiser les recensements de la population et de collaborer avec d'autres organismes pour définir des standards statistiques.");
+manager.addAnswer('fr', 'mission_dgs', "Conformément au décret N° 00718/PR/MPAT du 31 mai 1983, la Direction Générale de la Statistique a pour mission d'estimer le solde migratoire, de gérer les répertoires nationaux d'identification, et de collaborer avec d'autres institutions nationales et internationales de recherche statistique.")
+
+manager.addAnswer('fr', 'description_dgs', 'La Direction Générale de Statistiques (DGS) du Gabon, également connue sous le sigle DGS, est une administration centrale du Ministère de l’Economie et de la Relance. Elle a été créée et organisée par le décret N° 00718/PR/MPAT du 31 mai 1983. La DGS a évolué avec la création de la Direction des Etudes, de la Coordination Statistique et de l’Informatique, et la transformation de la Direction des Enquêtes et de la Démographie en la Direction des Statistiques Démographiques. Bien que la loi N° 015/2014 ait institué et organisé le Système Statistique National, la référence principale pour les missions de la DGS reste le décret N° 00718/PR/MPAT du 31 mai 1983.');
+manager.addAnswer('fr', 'description_dgs', "La Direction Générale de Statistiques (DGS) du Gabon, connue sous le sigle DGS, constitue une administration centrale du Ministère de l’Économie et de la Relance. Sa création et son organisation remontent au décret N° 00718/PR/MPAT du 31 mai 1983. Au fil du temps, la DGS a connu une évolution marquante avec l'établissement de la Direction des Études, de la Coordination Statistique et de l’Informatique, tandis que la Direction des Enquêtes et de la Démographie a été transformée en la Direction des Statistiques Démographiques. Bien que la loi N° 015/2014 ait institué et organisé le Système Statistique National, il convient de souligner que le décret N° 00718/PR/MPAT du 31 mai 1983 demeure la référence fondamentale pour définir les missions essentielles de la DGS.");
 manager.addDocument('fr', 'population totale', 'population');
 manager.addDocument('fr', 'urbain', 'population_urbaine');
 manager.addDocument('fr', 'rural', 'population_rurale');
@@ -306,6 +334,50 @@ manager.addAnswer('fr', 'evolution_demographique', "Toutes les provinces du Gabo
 manager.addAnswer('fr', 'evolution_demographique', "L'effectif de la population dans chacune des provinces du Gabon a enregistré une hausse significative depuis 1960, présentant toutefois des variations considérables entre les provinces. Entre 1960 et 2013, la population totale du Gabon a augmenté de 304%. Pour des informations spécifiques, veuillez indiquer vos préférences.");
 manager.addAnswer('fr', 'evolution_demographique', "Depuis 1960, la population de toutes les provinces du Gabon a connu une augmentation substantielle, mais avec des différences marquées entre chaque province. Au cours de la période de 1960 à 2013, l'augmentation totale a atteint 304%. Si vous avez des demandes particulières, veuillez les spécifier pour obtenir des détails précis.");
 manager.addAnswer('fr', 'evolution_demographique', "Une croissance notable de la population a été enregistrée dans toutes les provinces du Gabon depuis 1960, mais les variations entre elles sont significatives. Entre 1960 et 2013, la population globale du Gabon a connu une augmentation de 304%. Pour des informations plus détaillées, veuillez préciser les éléments que vous souhaitez connaître.");
+
+manager.addDocument('fr', "Je ne comprends pas", 'non_comprehension');
+manager.addDocument('fr', "Peux-tu répéter ?", 'non_comprehension');
+manager.addDocument('fr', "Je n'ai pas saisi", 'non_comprehension');
+manager.addDocument('fr', "Que veux-tu dire par là ?", 'non_comprehension');
+manager.addDocument('fr', "Je ne comprends pas cette information", 'non_comprehension');
+
+manager.addAnswer('fr', 'non_comprehension', "Désolé si ma réponse était confuse. En résumé, la Direction Générale de la Statistique, selon le décret N° 00718/PR/MPAT du 31 mai 1983, est chargée de mesurer les indicateurs économiques, organiser les recensements de la population, et gérer les répertoires nationaux d'identification.");
+
+// Document pour les coordonnées de contact
+manager.addDocument('fr', 'Coordonnées de contact', 'coordonnees_contact');
+manager.addDocument('fr', 'Comment contacter l\'Institut National de la Statistique du Gabon ?', 'coordonnees_contact');
+manager.addDocument('fr', 'Téléphone et e-mail de l\'INSTAT Gabon', 'coordonnees_contact');
+manager.addDocument('fr', 'Informations de contact de l\'INSTAT', 'coordonnees_contact');
+
+// Réponses pour les coordonnées de contact
+manager.addAnswer('fr', 'coordonnees_contact', 'Vous pouvez contacter l\'INSTAT Gabon aux numéros de téléphone suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Vous pouvez également les joindre par fax au (+241) 720457. Pour les questions par e-mail, utilisez contact@instatgabon.org.');
+manager.addAnswer('fr', 'coordonnees_contact', 'Les coordonnées de contact de l\'INSTAT Gabon sont les suivantes : Tél : (+241) 01720455 | 01721369 | 76 06 71, Fax : (+241) 720457, E-mail : contact@instatgabon.org.');
+manager.addAnswer('fr', 'coordonnees_contact', 'Pour entrer en contact avec l\'INSTAT Gabon, vous pouvez les appeler aux numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Leur fax est le (+241) 720457, et l\'e-mail de contact est contact@instatgabon.org.');
+manager.addAnswer('fr', 'coordonnees_contact', 'Les coordonnées de l\'INSTAT Gabon incluent les numéros de téléphone : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est le (+241) 720457, et l\'adresse e-mail de contact est contact@instatgabon.org.');
+manager.addAnswer('fr', 'coordonnees_contact', 'Si vous avez besoin de contacter l\'INSTAT Gabon, vous pouvez le faire en utilisant les numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est également disponible au (+241) 720457, et l\'e-mail de contact est contact@instatgabon.org.');
+
+// Document pour l'emplacement de l'Institut National de la Statistique du Gabon
+manager.addDocument('fr', 'Où est situé l\'Institut National de la Statistique du Gabon ?', 'localisation_instat');
+manager.addDocument('fr', 'Adresse de l\'Institut National de la Statistique du Gabon', 'localisation_instat');
+manager.addDocument('fr', 'Emplacement de l\'INSTAT Gabon', 'localisation_instat');
+manager.addDocument('fr', 'Donnez-moi l\'adresse de l\'INSTAT Gabon', 'localisation_instat');
+
+// Réponses pour l'emplacement de l'Institut National de la Statistique du Gabon
+manager.addAnswer('fr', 'localisation_instat', 'L\'Institut National de la Statistique du Gabon est situé à Libreville, Gabon, à l\'adresse B.P: 2119,OLOUMI Immeuble ancienne Planification.');
+manager.addAnswer('fr', 'localisation_instat', 'Vous trouverez l\'Institut National de la Statistique du Gabon à l\'adresse B.P: 2119,OLOUMI Immeuble ancienne Planification, Libreville (Gabon).');
+manager.addAnswer('fr', 'localisation_instat', 'L\'INSTAT Gabon se situe à l\'adresse B.P: 2119, Immeuble ancienne Planification, Libreville (Gabon).');
+manager.addAnswer('fr', 'localisation_instat', 'L\'adresse de l\'Institut National de la Statistique du Gabon est B.P: 2119, OLOUMI Immeuble ancienne Planification, Libreville (Gabon).');
+manager.addAnswer('fr', 'localisation_instat', 'L\'INSTAT Gabon se trouve à B.P: 2119, OLOUMI Immeuble ancienne Planification, Libreville (Gabon).');
+
+// Document pour répondre à la question "Vous êtes où ?"
+manager.addDocument('fr', 'Vous êtes où ?', 'emplacement_instat');
+manager.addDocument('fr', 'Où est situé votre bureau ?', 'emplacement_instat');
+manager.addDocument('fr', 'Localisation de votre institution', 'emplacement_instat');
+
+// Réponses pour la question "Vous êtes où ?"
+manager.addAnswer('fr', 'emplacement_instat', 'L\'Institut National de la Statistique du Gabon est situé à Libreville, Gabon, à l\'adresse B.P: 2119, Immeuble ancienne Planification OLOUMI, ');
+manager.addAnswer('fr', 'emplacement_instat', 'Notre institution est située à Libreville, Gabon, à l\'adresse B.P: 2119, OLOUMI Immeuble ancienne Planification.');
+manager.addAnswer('fr', 'emplacement_instat', 'Le bureau de l\'INSTAT Gabon est localisé à Libreville, Gabon, à l\'adresse B.P: 2119, OLOUMI, Immeuble ancienne Planification.');
 // (async () => {
 //     await manager.train();
 //     manager.save();
