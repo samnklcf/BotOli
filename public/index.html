@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .chat-container {
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat {
+        overflow-y: scroll;
+        height: calc(
+          100vh - 85px
+        ); /* 85px is the total height of the message form */
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .message {
+        position: relative;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+
+      .message-left::before,
+      .message-right::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px;
+      }
+
+      .message-left::before {
+        border-color: transparent #e9ecef transparent transparent;
+        left: -10px;
+      }
+
+      .message-right::before {
+        border-color: transparent transparent transparent #007bff;
+        right: -10px;
+      }
+
+      .message-text {
+        max-width: 70%; /* Ajustez la largeur maximale selon vos préférences */
+        word-wrap: break-word;
+      }
+
+      .message-left {
+        background-color: #e9ecef;
+        text-align: left;
+      }
+
+      .message-right {
+        background-color: #007bff;
+        color: #fff;
+        text-align: right;
+      }
+
+      .message-form {
+        padding: 15px;
+        border-top: 1px solid #ddd;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container chat-container">
+      <div class="chat" id="chatList">
+        <div class="message message-left">
+          <div class="message-text">Bonjour 😊...</div>
+        </div>
+      </div>
+      <div class="message-form">
+        <form id="chatForm">
+          <div class="form-row align-items-center">
+            <div class="col-9">
+              <input
+                type="text"
+                class="form-control"
+                id="userInput"
+                placeholder="Type your message"
+                required
+              />
+            </div>
+            <div class="col-3">
+              <button type="submit" class="btn btn-primary btn-block">
+                <span class="text-white"><i class="fa fa-send"></i></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Utilisez l'événement submit du formulaire
+        $("#chatForm").submit(function (event) {
+          event.preventDefault(); // Empêche le rechargement de la page
+          sendMessage();
+        });
+
+        function sendMessage() {
+            const userInput = $('#userInput').val();
+        
+            $.get(`/bot?message=${userInput}`, function(data) {
+                // Affichez le message "moi" immédiatement
+                const chatList = $('#chatList');
+                const myMessage = `
+                    <div class="message message-right">
+                        <div class="message-text">${data.moi}</div>
+                    </div>
+                `;
+                chatList.append(myMessage);
+        
+                // Ajoutez une latence de 500 millisecondes (0.5 seconde) avant la réponse de "data.bot"
+                setTimeout(function() {
+                    // Affichez la réponse du bot lettre par lettre
+                    const botMessageContainer = $('<div class="message message-left">');
+                    chatList.append(botMessageContainer);
+        
+                    const botMessageText = data.bot;
+                    let index = 0;
+        
+                    const intervalId = setInterval(function() {
+                        const partialMessage = botMessageText.slice(0, index + 1);
+                        botMessageContainer.html(`<div class="message-text">${partialMessage}</div>`);
+                        chatList.scrollTop(chatList[0].scrollHeight);
+        
+                        index++;
+        
+                        if (index === botMessageText.length) {
+                            clearInterval(intervalId);
+        
+                            // Faire défiler automatiquement vers le bas avec une animation fluide
+                            chatList.animate({ scrollTop: chatList[0].scrollHeight }, 800);
+                        }
+                    }, 10); // Ajoutez une lettre toutes les 100 millisecondes
+        
+                    // Effacez le champ de saisie après l'envoi du message
+                    $('#userInput').val('');
+                }, 500);
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

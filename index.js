@@ -1,8 +1,11 @@
 const {NlpManager} = require('node-nlp')
 const express = require("express")
-const manager = new NlpManager(({languages: ["fr"]})); 
+const manager = new NlpManager(({languages: ["fr"]}));
+const path = require('path');
 
 const app = express()
+app.use(express.static('public'));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 
 // Ajouter des documents pour saluer
 manager.addDocument('fr', 'Bonjour', 'salutation');
@@ -215,6 +218,7 @@ manager.addDocument("fr", "Peux-tu me dire qui est le cerveau derrière Oli ?", 
 manager.addDocument("fr", "Dis-moi qui a conçu Oli.", "info_bot_developer");
 
 manager.addDocument("fr", "Quelle est ton nom ?", "question_nom");
+manager.addDocument("fr", "Qui es-tu? ?", "question_nom");
 manager.addDocument("fr", "Comment tu t'appelles ?", "question_nom");
 manager.addDocument("fr", "Comment tu te nommes ?", "question_nom");
 manager.addDocument("fr", "C'est quoi ton petit nom ?", "question_nom");
@@ -229,6 +233,15 @@ manager.addAnswer("fr", "question_nom", "Oli, c'est comme ça qu'ils m'appellent
 manager.addDocument("fr", "Quand et où Oli a-t-il été développé ?", "info_bot_creation_location");
 manager.addDocument("fr", "Dis-moi plus sur le lieu et la date de naissance de Oli.", "info_bot_creation_location");
 manager.addDocument("fr", "Où et quand Oli a-t-il vu le jour ?", "info_bot_creation_location");
+manager.addDocument("fr", "Merci ?", "merci");
+manager.addDocument("fr", " je te remercie ?", "merci");
+
+manager.addAnswer("fr", "info_bot_creation_date", "Pas de problème ! Je suis là pour aider avec plaisir.");
+manager.addAnswer("fr", "info_bot_creation_date", "Aucun souci ! C'est toujours un plaisir de fournir de l'aide.");
+manager.addAnswer("fr", "info_bot_creation_date", "Il n'y a pas de quoi ! C'est agréable de pouvoir être utile.");
+manager.addAnswer("fr", "Aucune difficulté ! C'est un plaisir d'être à votre service.");
+manager.addAnswer("fr", "info_bot_creation_date", "Pas de soucis du tout ! Aider est ce que je fais avec joie.");
+
 
 manager.addAnswer("fr", "info_bot_creation_date", "Je suis né le 15/12/2023 à Libreville.");
 manager.addAnswer("fr", "info_bot_creation_date", "Mon existence a débuté le 15 décembre 2023 à Libreville.");
@@ -237,6 +250,8 @@ manager.addAnswer("fr", "info_bot_creation_date", "Oli a vu le jour le 15 décem
 manager.addAnswer("fr", "info_bot_developer", "Je suis le fruit du travail acharné de NKENKE EYEBE Samuel, un développeur fullstack et fondateur de Alisa IA.");
 manager.addAnswer("fr", "info_bot_developer", "C'est NKENKE EYEBE Samuel qui a développé Oli, un développeur fullstack et fondateur de Alisa IA.");
 manager.addAnswer("fr", "info_bot_developer", "Le cerveau derrière moi est NKENKE EYEBE Samuel, un développeur fullstack et fondateur de Alisa IA.");
+
+
 
 manager.addAnswer("fr", "info_bot_creation_location", "J'ai été mis au monde à Libreville en 15 décembre 2023.");
 manager.addAnswer("fr", "info_bot_creation_location", "Oli a vu le jour à Libreville le 15 décembre 2023.");
@@ -391,10 +406,18 @@ manager.addAnswer('fr', 'emplacement_instat', 'Le bureau de l\'INSTAT Gabon est 
 manager.train().then(async() => {
     manager.save();
 
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'views', 'index.html'));
+    });
+
 
     app.get('/bot', async (req, res) => {
         let response = await manager.process("fr", req.query.message);
-        res.send(response.answer || "Cela fait seulement Quelques heures que j'ai été entrainnée, veillez m'excuser si je ne réponds pas aux questions")
+
+        res.json({
+            bot: response.answer || "Cela fait seulement Quelques heures que j'ai été entrainnée, veillez m'excuser si je ne réponds pas aux questions",
+            moi: req.query.message
+        } )
     })
 
      console.log("localhost:3000")
