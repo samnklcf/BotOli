@@ -233,14 +233,14 @@ manager.addAnswer("fr", "question_nom", "Oli, c'est comme ça qu'ils m'appellent
 manager.addDocument("fr", "Quand et où Oli a-t-il été développé ?", "info_bot_creation_location");
 manager.addDocument("fr", "Dis-moi plus sur le lieu et la date de naissance de Oli.", "info_bot_creation_location");
 manager.addDocument("fr", "Où et quand Oli a-t-il vu le jour ?", "info_bot_creation_location");
-manager.addDocument("fr", "Merci ?", "merci");
+manager.addDocument("fr", "merci ?", "merci");
 manager.addDocument("fr", " je te remercie ?", "merci");
 
-manager.addAnswer("fr", "info_bot_creation_date", "Pas de problème ! Je suis là pour aider avec plaisir.");
-manager.addAnswer("fr", "info_bot_creation_date", "Aucun souci ! C'est toujours un plaisir de fournir de l'aide.");
-manager.addAnswer("fr", "info_bot_creation_date", "Il n'y a pas de quoi ! C'est agréable de pouvoir être utile.");
-manager.addAnswer("fr", "Aucune difficulté ! C'est un plaisir d'être à votre service.");
-manager.addAnswer("fr", "info_bot_creation_date", "Pas de soucis du tout ! Aider est ce que je fais avec joie.");
+manager.addAnswer("fr", "merci", "Pas de problème ! Je suis là pour aider avec plaisir.");
+manager.addAnswer("fr", "merci", "Aucun souci ! C'est toujours un plaisir de fournir de l'aide.");
+manager.addAnswer("fr", "merci", "Il n'y a pas de quoi ! C'est agréable de pouvoir être utile.");
+manager.addAnswer("fr", "merci","Aucune difficulté ! C'est un plaisir d'être à votre service.");
+manager.addAnswer("fr", "merci", "Pas de soucis du tout ! Aider est ce que je fais avec joie.");
 
 
 manager.addAnswer("fr", "info_bot_creation_date", "Je suis né le 15/12/2023 à Libreville.");
