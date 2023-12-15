@@ -30,11 +30,12 @@
       }
 
       .chat {
+        
         overflow-y: scroll;
         height: calc(
           100vh - 85px
         ); /* 85px is the total height of the message form */
-        padding: 10px;
+        padding: 10px 10px;
         border-bottom: 1px solid #ddd;
       }
 
@@ -90,7 +91,11 @@
   </head>
   <body>
     <div class="container chat-container">
+        
       <div class="chat" id="chatList">
+        <b><i><small>By <span class="text-primary">Alissa</span> <span class="text-warning">ia</span></small></i></b>
+        <hr/>
+        
         <div class="message message-left">
           <div class="message-text">Bonjour 😊...</div>
         </div>
@@ -103,7 +108,7 @@
                 type="text"
                 class="form-control"
                 id="userInput"
-                placeholder="Type your message"
+                placeholder="Votre message..."
                 required
               />
             </div>
