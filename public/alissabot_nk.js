@@ -1,12 +1,13 @@
       // Fonction pour créer le bouton
       function createCustomButton() {
         var button = document.createElement("div");
-        button.innerHTML = `<img src="/images/chatbot.gif" alt="JPG" width="80px" style="border-radius: 100%">`;
+        button.innerHTML = `<img src="https://oli-bot.onrender.com/images/chatbot.gif" alt="JPG" width="80px" style="border-radius: 100%; z-index:200000;">`;
         button.style.position = "fixed";
         button.style.bottom = "70px";
         button.style.right = "30px";
         button.style.border = "none";
         button.style.cursor = "pointer";
+        button.style.zIndex="9999"
         document.body.appendChild(button);
 
         button.addEventListener("click", function () {
@@ -20,8 +21,9 @@
           darkLayer.style.left = "0";
           darkLayer.style.width = "100%";
           darkLayer.style.height = "100%";
-          darkLayer.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Couleur noire avec une opacité de 0.5
+          darkLayer.style.backgroundColor = "rgba(0, 0, 0, 0.8)"; // Couleur noire avec une opacité de 0.5
           darkLayer.style.cursor = "pointer"; // Ajout d'un curseur pointer pour indiquer que le layer est cliquable
+          darkLayer.style.zIndex = "5000";
           darkLayer.addEventListener("click", function () {
             // Faites disparaître le layer, le rectangle et l'iframe
             darkLayer.style.display = "none";
@@ -43,7 +45,7 @@
           rectangle.style.width = "400px";
           rectangle.style.height = "90vh"; // 90% de la hauteur de l'écran
           rectangle.style.backgroundColor = "white";
-          rectangle.style.zIndex = "1"; // Assurez-vous que le rectangle est au-dessus du layer
+          rectangle.style.zIndex = "6000"; // Assurez-vous que le rectangle est au-dessus du layer
           rectangle.style.border = "none";
           rectangle.style.borderRadius = "8px";
           rectangle.style.marginLeft = "4px";
@@ -86,6 +88,7 @@
           iframe.style.height = "100%";
           iframe.style.border = "none";
           iframe.style.borderRadius = "8px";
+          iframe.style.zIndex = "7000";
 
           // Ajoutez un gestionnaire d'événements pour détecter le chargement de l'iframe
           iframe.addEventListener("load", function () {
@@ -101,6 +104,7 @@
             rectangle.style.display = "none";
             loadingIndicator.style.display = "none";
             iframe.style.display = "none";
+            returnButton.style.zIndex = "8000";
 
             // Restaurez le bouton
             button.style.display = "block";
