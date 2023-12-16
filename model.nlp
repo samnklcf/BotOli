@@ -1139,7 +1139,7 @@
           },
           {
             "domain": "default",
-            "utterance": "Merci ?",
+            "utterance": "merci ?",
             "intent": "merci"
           },
           {
@@ -17147,7 +17147,7 @@
       ],
       [
         "fr",
-        "Merci ?"
+        "merci ?"
       ],
       [
         "fr",
@@ -17553,7 +17553,7 @@
             "answer": "Oli, c'est comme ça qu'ils m'appellent."
           }
         ],
-        "info_bot_creation_date": [
+        "merci": [
           {
             "answer": "Pas de problème ! Je suis là pour aider avec plaisir."
           },
@@ -17564,8 +17564,13 @@
             "answer": "Il n'y a pas de quoi ! C'est agréable de pouvoir être utile."
           },
           {
-            "answer": "Pas de soucis du tout ! Aider est ce que je fais avec joie."
+            "answer": "Aucune difficulté ! C'est un plaisir d'être à votre service."
           },
+          {
+            "answer": "Pas de soucis du tout ! Aider est ce que je fais avec joie."
+          }
+        ],
+        "info_bot_creation_date": [
           {
             "answer": "Je suis né le 15/12/2023 à Libreville."
           },
@@ -17575,9 +17580,6 @@
           {
             "answer": "Oli a vu le jour le 15 décembre 2023 à Libreville."
           }
-        ],
-        "Aucune difficulté ! C'est un plaisir d'être à votre service.": [
-          {}
         ],
         "info_bot_developer": [
           {

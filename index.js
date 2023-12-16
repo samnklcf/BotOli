@@ -5,7 +5,7 @@ const path = require('path');
 
 const app = express()
 app.use(express.static('public'));
-app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/images', express.static('public/images'));
 
 // Ajouter des documents pour saluer
 manager.addDocument('fr', 'Bonjour', 'salutation');

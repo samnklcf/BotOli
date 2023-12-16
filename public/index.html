@@ -12,6 +12,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <style>
       body {
         font-family: "Arial", sans-serif;
@@ -30,7 +31,6 @@
       }
 
       .chat {
-        
         overflow-y: scroll;
         height: calc(
           100vh - 85px
@@ -91,11 +91,17 @@
   </head>
   <body>
     <div class="container chat-container">
-        
       <div class="chat" id="chatList">
-        <b><i><small>By <span class="text-primary">Alissa</span> <span class="text-warning">ia</span></small></i></b>
-        <hr/>
-        
+        <b
+          ><i
+            ><small
+              >By <span class="text-primary">Alissa</span>
+              <span class="text-warning">ia</span></small
+            ></i
+          ></b
+        >
+        <hr />
+
         <div class="message message-left">
           <div class="message-text">Bonjour 😊...</div>
         </div>
@@ -131,48 +137,57 @@
         });
 
         function sendMessage() {
-            const userInput = $('#userInput').val();
-        
-            $.get(`/bot?message=${userInput}`, function(data) {
-                // Affichez le message "moi" immédiatement
-                const chatList = $('#chatList');
-                const myMessage = `
+          const userInput = $("#userInput").val();
+
+          $.get(`/bot?message=${userInput}`, function (data) {
+            // Affichez le message "moi" immédiatement
+            const chatList = $("#chatList");
+            const myMessage = `
                     <div class="message message-right">
                         <div class="message-text">${data.moi}</div>
                     </div>
                 `;
-                chatList.append(myMessage);
-        
-                // Ajoutez une latence de 500 millisecondes (0.5 seconde) avant la réponse de "data.bot"
-                setTimeout(function() {
-                    // Affichez la réponse du bot lettre par lettre
-                    const botMessageContainer = $('<div class="message message-left">');
-                    chatList.append(botMessageContainer);
-        
-                    const botMessageText = data.bot;
-                    let index = 0;
-        
-                    const intervalId = setInterval(function() {
-                        const partialMessage = botMessageText.slice(0, index + 1);
-                        botMessageContainer.html(`<div class="message-text">${partialMessage}</div>`);
-                        chatList.scrollTop(chatList[0].scrollHeight);
-        
-                        index++;
-        
-                        if (index === botMessageText.length) {
-                            clearInterval(intervalId);
-        
-                            // Faire défiler automatiquement vers le bas avec une animation fluide
-                            chatList.animate({ scrollTop: chatList[0].scrollHeight }, 800);
-                        }
-                    }, 10); // Ajoutez une lettre toutes les 100 millisecondes
-        
-                    // Effacez le champ de saisie après l'envoi du message
-                    $('#userInput').val('');
-                }, 500);
-            });
+            chatList.append(myMessage);
+
+            // Ajoutez une latence de 500 millisecondes (0.5 seconde) avant la réponse de "data.bot"
+            setTimeout(function () {
+              // Affichez la réponse du bot lettre par lettre
+              const botMessageContainer = $(
+                '<div class="message message-left">'
+              );
+              chatList.append(botMessageContainer);
+
+              const botMessageText = data.bot;
+              let index = 0;
+
+              const intervalId = setInterval(function () {
+                const partialMessage = botMessageText.slice(0, index + 1);
+                botMessageContainer.html(
+                  `<div class="message-text">${partialMessage}</div>`
+                );
+                chatList.scrollTop(chatList[0].scrollHeight);
+
+                index++;
+
+                if (index === botMessageText.length) {
+                  clearInterval(intervalId);
+
+                  // Faire défiler automatiquement vers le bas avec une animation fluide
+                  chatList.animate(
+                    { scrollTop: chatList[0].scrollHeight },
+                    800
+                  );
+                }
+              }, 10); // Ajoutez une lettre toutes les 100 millisecondes
+
+              // Effacez le champ de saisie après l'envoi du message
+              $("#userInput").val("");
+            }, 500);
+          });
         }
       });
     </script>
+
+    <script src="./alissabot_nk.js"></script>
   </body>
 </html>
