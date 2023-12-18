@@ -57,7 +57,7 @@ manager.addAnswer(
     `
     <style>
       body {
-        font-size: 14px; /* Ajustez la taille de la police selon vos besoins */
+        font-size: 12px; /* Ajustez la taille de la police selon vos besoins */
       }
   
       .table {
@@ -68,8 +68,8 @@ manager.addAnswer(
 
 
   
-    <div class="container mt-4">
-      <h1 class="mb-4">Tableau 1 : Répartition (%) des ménages</h1>
+    <div class="container mt-4 w" style="width:100%">
+      <h6 class="mb-4">Tableau 1 : Répartition (%) des ménages</h6>
   
       <div class="table-responsive">
         <table class="table table-bordered">
