@@ -1005,7 +1005,7 @@ manager.train().then(async () => {
     let botReponse = response.answer || getRandomDefaultMessage();
 
     res.json({
-      bot: (!response.answer ? (`${botReponse} , <hr />\n \n votre demande: <b>${req.query.message}</b>`) : (response.answer)), 
+      bot: botReponse, 
       moi: req.query.message,
     });
   });
