@@ -104,7 +104,7 @@
         <hr />
 
         <div class="message message-left">
-          <div class="message-text">Bonjour 😊...</div>
+          <div class="message-text"><i>Bonjour 😊...</i></div>
         </div>
       </div>
       <div class="message-form">
@@ -166,7 +166,7 @@
               const intervalId = setInterval(function () {
                 const partialMessage = botMessageText.slice(0, index + 1);
                 botMessageContainer.html(
-                  `<div class="message-text">${partialMessage}</div>`
+                  `<div class="message-text"><i>${partialMessage}</i></div>`
                 );
                 chatList.scrollTop(chatList[0].scrollHeight);
 
@@ -181,7 +181,7 @@
                     800
                   );
                 }
-              }, 10); // Ajoutez une lettre toutes les 100 millisecondes
+              }, 5); // Ajoutez une lettre toutes les 100 millisecondes
 
               // Effacez le champ de saisie après l'envoi du message
               $("#userInput").val("");

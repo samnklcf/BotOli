@@ -7,94 +7,407 @@ const app = express();
 app.use(express.static("public"));
 app.use("/images", express.static("public/images"));
 
-
-
-
 // ------------------------------Doc1------------------------------------------
-manager.addDocument('fr', 'Quelle est la perception de la pauvreté ?', 'perceptionPauvrete');
-manager.addDocument('fr', 'Quel est le point de vue sur la pauvreté ?', 'perceptionPauvrete');
-manager.addDocument('fr', 'Comment les gens voient-ils la pauvreté ?', 'perceptionPauvrete');
-manager.addDocument('fr', 'Comment la pauvreté est-elle perçue ', 'perceptionPauvrete');
-manager.addAnswer('fr', 'perceptionPauvrete', 'Au Gabon, la manière dont la pauvreté est perçue ne semble pas être significativement influencée par des facteurs tels que le lieu de résidence, le sexe du chef de ménage, la région de résidence ou le groupe socio-économique.');
-manager.addAnswer('fr', 'perceptionPauvrete', "Au Gabon, la façon dont les gens voient la pauvreté n'est pas beaucoup différente selon où ils habitent, le sexe du chef de famille, la région ou le groupe socio-économique.");
+manager.addDocument(
+  "fr",
+  "Quelle est la perception de la pauvreté ?",
+  "perceptionPauvrete"
+);
+manager.addDocument(
+  "fr",
+  "Quel est le point de vue sur la pauvreté ?",
+  "perceptionPauvrete"
+);
+manager.addDocument(
+  "fr",
+  "Comment les gens voient-ils la pauvreté ?",
+  "perceptionPauvrete"
+);
+manager.addDocument("fr", "La pauvreté au Gabon ?", "GabPauvrete");
+manager.addDocument(
+  "fr",
+  "Comment la pauvreté est-elle perçue ",
+  "perceptionPauvrete"
+);
+manager.addAnswer(
+  "fr",
+  "perceptionPauvrete",
+  "Au Gabon, la manière dont la pauvreté est perçue ne semble pas être significativement influencée par des facteurs tels que le lieu de résidence, le sexe du chef de ménage, la région de résidence ou le groupe socio-économique."
+);
+manager.addAnswer(
+  "fr",
+  "GabPauvrete",
+  `Au Gabon, la pauvreté est une réalité pour une grande partie de la population. En 2016, 54% des ménages ont vu leur niveau de vie décliner, tandis que 6% ont noté une amélioration et 40% ont constaté une stabilité. La situation est plus difficile en milieu rural où 56,9% des ménages ont connu une baisse de leur niveau de vie. De plus, seulement 20% des ménages économisent, tandis que 14% vivent sur leurs réserves et 23% s’endettent.
 
-manager.addDocument('fr', 'Quels facteurs sont associés à la pauvreté?', 'facteursPauvrete');
-manager.addDocument('fr', 'Les causes la pauvreté ?', 'facteursPauvrete');
-manager.addAnswer('fr', 'facteursPauvrete', 'La majorité des ménages au Gabon associent la pauvreté à une consommation inférieure au seuil de subsistance, à l’incapacité d’influer sur sa condition de vie et à un faible niveau de capital humain.');
-manager.addAnswer('fr', 'facteursPauvrete', 'La plupart des familles au Gabon considèrent la pauvreté comme ayant un niveau de vie en dessous du seuil nécessaire, une incapacité à améliorer les conditions de vie et un faible niveau de compétences humaines.');
-manager.addAnswer('fr', 'facteursPauvrete', 'La plupart des familles au Gabon pensent que la pauvreté signifie vivre avec peu, ne pas pouvoir changer sa vie et avoir peu de compétences.');
+La perception de la pauvreté est également élevée, avec 14,9% des ménages se déclarant très pauvres et 38,3% moyennement pauvres. Cette perception est plus prononcée en milieu rural (24,9%) et parmi les ménages dirigés par des femmes (59%).
 
-manager.addDocument('fr', 'joue un rôle prépondérant / important / majeur / central  dans la définition de la pauvreté au Gabon ?', 'roleDefinitionPauvrete');
-manager.addAnswer('fr', 'roleDefinitionPauvrete', 'Les chefs de ménage éduqués et les cadres supérieurs jouent un rôle prépondérant dans la définition de la pauvreté au Gabon.');
-manager.addDocument('fr', 'La perception / définition  de la pauvreté a-t-elle changé ?', 'evolutionPerceptionPauvrete');
-manager.addAnswer('fr', 'evolutionPerceptionPauvrete', 'Non, ces perceptions n’ont pas changé de manière significative depuis 2005.');
+En termes de besoins, 93,9% des ménages estiment que le besoin minimum pour une vie correcte est de pouvoir se soigner lorsqu’on est malade, suivi de l’emploi stable (92,1%), l’accès à l’eau courante et à l’électricité (91,8%) et l’éducation pour tous les enfants (91%).
 
+Enfin, pour améliorer les conditions de vie, 59% des ménages estiment que la création d’emplois est l’action prioritaire. D’autres actions, comme la valorisation des salaires (7%), la garantie des prix des produits de base et l’accès au logement (6% chacun), sont également envisagées.
+
+Ces informations mettent en évidence les défis importants auxquels le Gabon est confronté en matière de réduction de la pauvreté et d’amélioration des conditions de vie.`
+);
+
+manager.addDocument("fr", "répartition des ménages ?", "TableMenage");
+
+manager.addAnswer(
+    "fr",
+    "TableMenage",
+    
+    `
+    <style>
+      body {
+        font-size: 14px; /* Ajustez la taille de la police selon vos besoins */
+      }
+  
+      .table {
+        width: auto;
+        overflow-x: auto;
+      }
+    </style>
+
+
+  
+    <div class="container mt-4">
+      <h1 class="mb-4">Tableau 1 : Répartition (%) des ménages</h1>
+  
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Milieu de résidence / Région / Sexe / Niveau d'instruction / Groupe socioéconomique</th>
+              <th scope="col" colspan="7">Perception de la notion de pauvreté</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <th scope="row">Milieu de résidence</th>
+          <td>Total</td>
+          <td>81.4</td>
+          <td>76.1</td>
+          <td>77.2</td>
+          <td>60.2</td>
+          <td>74.4</td>
+          <td>80.2</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Urbain</td>
+          <td>81.8</td>
+          <td>75.9</td>
+          <td>78.1</td>
+          <td>59.3</td>
+          <td>74.1</td>
+          <td>80.3</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Rural</td>
+          <td>78.9</td>
+          <td>77.3</td>
+          <td>72.3</td>
+          <td>65.6</td>
+          <td>75.9</td>
+          <td>79.7</td>
+        </tr>
+        <!-- ... Autres lignes ... -->
+        <tr>
+          <th scope="row">Région</th>
+          <td>Total</td>
+          <td>81.4</td>
+          <td>76.1</td>
+          <td>77.2</td>
+          <td>60.2</td>
+          <td>74.4</td>
+          <td>80.2</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Libreville</td>
+          <td>85.4</td>
+          <td>79.4</td>
+          <td>84.3</td>
+          <td>59.7</td>
+          <td>74.9</td>
+          <td>85.3</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td>Port-Gentil</td>
+          <td>72.9</td>
+          <td>74.7</td>
+          <td>77</td>
+          <td>63.7</td>
+          <td>78.3</td>
+          <td>77.4</td>
+        </tr>
+        <!-- ... Autres lignes ... -->
+      </tbody>
+        </table>
+      </div>
+  
+    </div>
+  
+   
+
+    
+  `
+  );
+manager.addAnswer(
+  "fr",
+  "perceptionPauvrete",
+  "Au Gabon, la façon dont les gens voient la pauvreté n'est pas beaucoup différente selon où ils habitent, le sexe du chef de famille, la région ou le groupe socio-économique."
+);
+
+manager.addDocument(
+  "fr",
+  "Quels facteurs sont associés à la pauvreté?",
+  "facteursPauvrete"
+);
+manager.addDocument("fr", "Les causes la pauvreté ?", "facteursPauvrete");
+manager.addAnswer(
+  "fr",
+  "facteursPauvrete",
+  "La majorité des ménages au Gabon associent la pauvreté à une consommation inférieure au seuil de subsistance, à l’incapacité d’influer sur sa condition de vie et à un faible niveau de capital humain."
+);
+manager.addAnswer(
+  "fr",
+  "facteursPauvrete",
+  "La plupart des familles au Gabon considèrent la pauvreté comme ayant un niveau de vie en dessous du seuil nécessaire, une incapacité à améliorer les conditions de vie et un faible niveau de compétences humaines."
+);
+manager.addAnswer(
+  "fr",
+  "facteursPauvrete",
+  "La plupart des familles au Gabon pensent que la pauvreté signifie vivre avec peu, ne pas pouvoir changer sa vie et avoir peu de compétences."
+);
+
+manager.addDocument(
+  "fr",
+  "joue un rôle prépondérant / important / majeur / central  dans la définition de la pauvreté au Gabon ?",
+  "roleDefinitionPauvrete"
+);
+manager.addAnswer(
+  "fr",
+  "roleDefinitionPauvrete",
+  "Les chefs de ménage éduqués et les cadres supérieurs jouent un rôle prépondérant dans la définition de la pauvreté au Gabon."
+);
+manager.addDocument(
+  "fr",
+  "La perception / définition  de la pauvreté a-t-elle changé ?",
+  "evolutionPerceptionPauvrete"
+);
+manager.addAnswer(
+  "fr",
+  "evolutionPerceptionPauvrete",
+  "Non, ces perceptions n’ont pas changé de manière significative depuis 2005."
+);
 
 // -------------------Doc2------------------------------------
-manager.addDocument('fr', 'le niveau de vie  ?', 'niveau_de_vie');
-manager.addDocument('fr', 'Comment a évolué le niveau de vie au Gabon ?', 'niveau_de_vie');
-manager.addDocument('fr', 'Pourquoi le niveau de vie a décliné au Gabon ?', 'niveau_de_vie');
+manager.addDocument("fr", "le niveau de vie  ?", "niveau_de_vie");
+manager.addDocument(
+  "fr",
+  "Comment a évolué le niveau de vie au Gabon ?",
+  "niveau_de_vie"
+);
+manager.addDocument(
+  "fr",
+  "Pourquoi le niveau de vie a décliné au Gabon ?",
+  "niveau_de_vie"
+);
 
 // Réponses sur le niveau de vie en général
-manager.addAnswer('fr', 'niveau_de_vie', 'En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité.');
-manager.addAnswer('fr', 'niveau_de_vie', 'La majorité des ménages au Gabon ont connu une baisse de leur niveau de vie en 2016. Seuls 6% ont vu une amélioration. En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité.');
-manager.addAnswer('fr', 'niveau_de_vie', 'La dégradation du niveau de vie au Gabon peut être attribuée à divers facteurs économiques et sociaux. En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité.');
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie",
+  "En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité."
+);
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie",
+  "La majorité des ménages au Gabon ont connu une baisse de leur niveau de vie en 2016. Seuls 6% ont vu une amélioration. En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité."
+);
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie",
+  "La dégradation du niveau de vie au Gabon peut être attribuée à divers facteurs économiques et sociaux. En 2016, 54% des ménages au Gabon ont vu leur niveau de vie décliner, 6% ont noté une amélioration et 40% ont constaté une stabilité."
+);
 
 // Questions sur le niveau de vie en milieu rural
-manager.addDocument('fr', 'le niveau de vie en milieu rural?', 'niveau_de_vie_rural');
+manager.addDocument(
+  "fr",
+  "le niveau de vie en milieu rural?",
+  "niveau_de_vie_rural"
+);
 
-manager.addDocument('fr', 'Pourquoi le niveau de vie en milieu rural est plus dégradé ?', 'pourquoi_niveau_de_vie_rural');
+manager.addDocument(
+  "fr",
+  "Pourquoi le niveau de vie en milieu rural est plus dégradé ?",
+  "pourquoi_niveau_de_vie_rural"
+);
 
 // Réponses sur le niveau de vie en milieu rural
-manager.addAnswer('fr', 'niveau_de_vie_rural', 'La dégradation du niveau de vie est plus marquée en milieu rural au Gabon, avec 56,9% des ménages ayant connu une baisse en 2016.');
-manager.addAnswer('fr', 'pourquoi_niveau_de_vie_rural', 'En milieu rural au Gabon, la situation est plus difficile avec 56,9% des ménages qui ont vu leur niveau de vie baisser en 2016.');
-
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie_rural",
+  "La dégradation du niveau de vie est plus marquée en milieu rural au Gabon, avec 56,9% des ménages ayant connu une baisse en 2016."
+);
+manager.addAnswer(
+  "fr",
+  "pourquoi_niveau_de_vie_rural",
+  "En milieu rural au Gabon, la situation est plus difficile avec 56,9% des ménages qui ont vu leur niveau de vie baisser en 2016."
+);
 
 // ----------------------------Doc3---------------------------------------
-manager.addDocument('fr', 'le niveau de vie à Port-Gentil ?', 'niveau_de_vie_portgentil');
-manager.addDocument('fr', 'Pourquoi le niveau de vie en région de Port-Gentil est plus dégradé ?', 'niveau_de_vie_portgentil');
+manager.addDocument(
+  "fr",
+  "le niveau de vie à Port-Gentil ?",
+  "niveau_de_vie_portgentil"
+);
+manager.addDocument(
+  "fr",
+  "Pourquoi le niveau de vie en région de Port-Gentil est plus dégradé ?",
+  "niveau_de_vie_portgentil"
+);
 
 // Réponses sur le niveau de vie en région de Port-Gentil
-manager.addAnswer('fr', 'niveau_de_vie_portgentil', 'La région de Port-Gentil a subi la plus grande dégradation avec 56,5% des ménages ayant connu une baisse en 2016.');
-manager.addAnswer('fr', 'niveau_de_vie_portgentil', 'En région de Port-Gentil au Gabon, la situation est plus difficile avec 56,5% des ménages qui ont vu leur niveau de vie baisser en 2016.');
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie_portgentil",
+  "La région de Port-Gentil a subi la plus grande dégradation avec 56,5% des ménages ayant connu une baisse en 2016."
+);
+manager.addAnswer(
+  "fr",
+  "niveau_de_vie_portgentil",
+  "En région de Port-Gentil au Gabon, la situation est plus difficile avec 56,5% des ménages qui ont vu leur niveau de vie baisser en 2016."
+);
 
 // Doc4
-manager.addDocument('fr', 'pourcentage de ménages au Gabon économisent ?', 'economie');
-manager.addDocument('fr', 'les cadres épargnent-ils plus ?', 'economie');
-manager.addAnswer('fr', 'economie', 'Seulement 20% des ménages au Gabon économisent, dont 2% économisent beaucoup et 18% un peu. Les cadres, surtout les cadres supérieurs, épargnent le plus (34%).');
-manager.addAnswer('fr', 'economie', "Les cadres, en particulier les cadres supérieurs, ont généralement des revenus plus élevés, ce qui leur permet dépargner davantage. Seulement 20% des ménages au Gabon économisent, dont 2% économisent beaucoup et 18% un peu. Les cadres, surtout les cadres supérieurs, épargnent le plus (34%).");
+manager.addDocument(
+  "fr",
+  "pourcentage de ménages au Gabon économisent ?",
+  "economie"
+);
+manager.addDocument("fr", "les cadres épargnent-ils plus ?", "economie");
+manager.addAnswer(
+  "fr",
+  "economie",
+  "Seulement 20% des ménages au Gabon économisent, dont 2% économisent beaucoup et 18% un peu. Les cadres, surtout les cadres supérieurs, épargnent le plus (34%)."
+);
+manager.addAnswer(
+  "fr",
+  "economie",
+  "Les cadres, en particulier les cadres supérieurs, ont généralement des revenus plus élevés, ce qui leur permet dépargner davantage. Seulement 20% des ménages au Gabon économisent, dont 2% économisent beaucoup et 18% un peu. Les cadres, surtout les cadres supérieurs, épargnent le plus (34%)."
+);
 
 // Doc5
-manager.addDocument('fr', 'la stabilité des revenus des ménages ?', 'stabilite_revenus');
-manager.addDocument('fr', 'l’instabilité du revenu / argent est plus prononcée / forte en milieu rural / campagne / village ?', 'stabilite_revenus');
-manager.addAnswer('fr', 'stabilite_revenus', 'Au Gabon, 12% des ménages trouvent leur revenu très stable, 41% le jugent très instable et 47% le considèrent à peu près stable. L’instabilité du revenu est plus prononcée en milieu rural (51%).');
-manager.addAnswer('fr', 'stabilite_revenus', "L’instabilité du revenu en milieu rural peut être due à la nature saisonnière de l'agriculture et à l'absence de sources de revenus stables.");
-
+manager.addDocument(
+  "fr",
+  "la stabilité des revenus des ménages ?",
+  "stabilite_revenus"
+);
+manager.addDocument(
+  "fr",
+  "l’instabilité du revenu / argent est plus prononcée / forte en milieu rural / campagne / village ?",
+  "stabilite_revenus"
+);
+manager.addAnswer(
+  "fr",
+  "stabilite_revenus",
+  "Au Gabon, 12% des ménages trouvent leur revenu très stable, 41% le jugent très instable et 47% le considèrent à peu près stable. L’instabilité du revenu est plus prononcée en milieu rural (51%)."
+);
+manager.addAnswer(
+  "fr",
+  "stabilite_revenus",
+  "L’instabilité du revenu en milieu rural peut être due à la nature saisonnière de l'agriculture et à l'absence de sources de revenus stables."
+);
 
 // Doc8
-manager.addDocument('fr', 'besoins minimums pour une vie correcte ?', 'besoins_minimum');
-manager.addDocument('fr', 'Pourquoi l’accès à l’eau courante et à l’électricité est-il si important au Gabon ?', 'besoins_minimum');
-manager.addAnswer('fr', 'besoins_minimum', 'Au Gabon, 93,9% des ménages estiment que le besoin minimum pour une vie correcte est de pouvoir se soigner lorsqu’on est malade. Suivent l’emploi stable (92,1%), l’accès à l’eau courante et à l’électricité (91,8%) et l’éducation pour tous les enfants (91%). ');
-manager.addAnswer('fr', 'besoins_minimum', 'L’accès à l’eau courante et à l’électricité est crucial pour la santé et le bien-être des ménages au Gabon. Au Gabon, 93,9% des ménages estiment que le besoin minimum pour une vie correcte est de pouvoir se soigner lorsqu’on est malade. Suivent l’emploi stable (92,1%), l’accès à l’eau courante et à l’électricité (91,8%) et l’éducation pour tous les enfants (91%).');
+manager.addDocument(
+  "fr",
+  "besoins minimums pour une vie correcte ?",
+  "besoins_minimum"
+);
+manager.addDocument(
+  "fr",
+  "Pourquoi l’accès à l’eau courante et à l’électricité est-il si important au Gabon ?",
+  "besoins_minimum"
+);
+manager.addAnswer(
+  "fr",
+  "besoins_minimum",
+  "Au Gabon, 93,9% des ménages estiment que le besoin minimum pour une vie correcte est de pouvoir se soigner lorsqu’on est malade. Suivent l’emploi stable (92,1%), l’accès à l’eau courante et à l’électricité (91,8%) et l’éducation pour tous les enfants (91%). "
+);
+manager.addAnswer(
+  "fr",
+  "besoins_minimum",
+  "L’accès à l’eau courante et à l’électricité est crucial pour la santé et le bien-être des ménages au Gabon. Au Gabon, 93,9% des ménages estiment que le besoin minimum pour une vie correcte est de pouvoir se soigner lorsqu’on est malade. Suivent l’emploi stable (92,1%), l’accès à l’eau courante et à l’électricité (91,8%) et l’éducation pour tous les enfants (91%)."
+);
 
 // Doc9
-manager.addDocument('fr', 'la participation associative au Gabon ?', 'participation_associative');
-manager.addDocument('fr', 'Pourquoi la participation associative a-t-elle diminué au Gabon ?', 'participation_associative');
-manager.addAnswer('fr', 'participation_associative', 'Au Gabon, 45,7% des ménages participent à une vie associative. Les associations les plus populaires sont religieuses (18,1%) et familiales (13,9%). Par rapport à 2005, la participation associative a diminué.');
-manager.addAnswer('fr', 'participation_associative', 'La diminution de la participation associative au Gabon peut être due à divers facteurs, tels que le manque de ressources ou le changement des priorités des ménages. Au Gabon, 45,7% des ménages participent à une vie associative. Les associations les plus populaires sont religieuses (18,1%) et familiales (13,9%). Par rapport à 2005, la participation associative a diminué.');
+manager.addDocument(
+  "fr",
+  "la participation associative au Gabon ?",
+  "participation_associative"
+);
+manager.addDocument(
+  "fr",
+  "Pourquoi la participation associative a-t-elle diminué au Gabon ?",
+  "participation_associative"
+);
+manager.addAnswer(
+  "fr",
+  "participation_associative",
+  "Au Gabon, 45,7% des ménages participent à une vie associative. Les associations les plus populaires sont religieuses (18,1%) et familiales (13,9%). Par rapport à 2005, la participation associative a diminué."
+);
+manager.addAnswer(
+  "fr",
+  "participation_associative",
+  "La diminution de la participation associative au Gabon peut être due à divers facteurs, tels que le manque de ressources ou le changement des priorités des ménages. Au Gabon, 45,7% des ménages participent à une vie associative. Les associations les plus populaires sont religieuses (18,1%) et familiales (13,9%). Par rapport à 2005, la participation associative a diminué."
+);
 
 // Doc10
-manager.addDocument('fr', 'les ménages s’attendent-ils à recevoir de l’aide en période difficile ', 'aide_difficulte');
-manager.addDocument('fr', 'les ménages au Gabon comptent davantage sur leur voisinage que sur les associations religieuses en cas de difficulté ?', 'aide_difficulte');
-manager.addAnswer('fr', 'aide_difficulte', 'Au Gabon, en période difficile, les ménages s’attendent à recevoir de l’aide principalement de la famille élargie (77,8%), des amis (53%) et du voisinage (36%). Malgré une plus grande adhésion aux associations religieuses, les ménages comptent davantage sur leur voisinage (36%) que sur ces associations (17,5%) en cas de difficulté.');
-manager.addAnswer('fr', 'aide_difficulte', 'Les ménages au Gabon peuvent compter davantage sur leur voisinage que sur les associations religieuses en cas de difficulté en raison de la proximité géographique et des liens communautaires forts.');
+manager.addDocument(
+  "fr",
+  "les ménages s’attendent-ils à recevoir de l’aide en période difficile ",
+  "aide_difficulte"
+);
+manager.addDocument(
+  "fr",
+  "les ménages au Gabon comptent davantage sur leur voisinage que sur les associations religieuses en cas de difficulté ?",
+  "aide_difficulte"
+);
+manager.addAnswer(
+  "fr",
+  "aide_difficulte",
+  "Au Gabon, en période difficile, les ménages s’attendent à recevoir de l’aide principalement de la famille élargie (77,8%), des amis (53%) et du voisinage (36%). Malgré une plus grande adhésion aux associations religieuses, les ménages comptent davantage sur leur voisinage (36%) que sur ces associations (17,5%) en cas de difficulté."
+);
+manager.addAnswer(
+  "fr",
+  "aide_difficulte",
+  "Les ménages au Gabon peuvent compter davantage sur leur voisinage que sur les associations religieuses en cas de difficulté en raison de la proximité géographique et des liens communautaires forts."
+);
 
 // Doc11
-manager.addDocument('fr', 'les actions prioritaires pour améliorer les conditions de vie ?', 'actions_prioritaires');
-manager.addDocument('fr', 'la création d’emplois est-elle considérée comme une priorité au Gabon ?', 'actions_prioritaires');
-manager.addAnswer('fr', 'actions_prioritaires', 'Au Gabon, 59% des ménages estiment que la création d’emplois est l’action prioritaire pour améliorer les conditions de vie. D’autres actions, comme la valorisation des salaires (7%), la garantie des prix des produits de base et l’accès au logement (6% chacun), sont également envisagées.');
-manager.addAnswer('fr', 'actions_prioritaires', 'La création d’emplois est considérée comme une priorité au Gabon car elle peut contribuer à améliorer les conditions de vie en augmentant les revenus des ménages et en réduisant la pauvreté.');
-
+manager.addDocument(
+  "fr",
+  "les actions prioritaires pour améliorer les conditions de vie ?",
+  "actions_prioritaires"
+);
+manager.addDocument(
+  "fr",
+  "la création d’emplois est-elle considérée comme une priorité au Gabon ?",
+  "actions_prioritaires"
+);
+manager.addAnswer(
+  "fr",
+  "actions_prioritaires",
+  "Au Gabon, 59% des ménages estiment que la création d’emplois est l’action prioritaire pour améliorer les conditions de vie. D’autres actions, comme la valorisation des salaires (7%), la garantie des prix des produits de base et l’accès au logement (6% chacun), sont également envisagées."
+);
+manager.addAnswer(
+  "fr",
+  "actions_prioritaires",
+  "La création d’emplois est considérée comme une priorité au Gabon car elle peut contribuer à améliorer les conditions de vie en augmentant les revenus des ménages et en réduisant la pauvreté."
+);
 
 // -----------------------Role de la DGS--------------------
 manager.addDocument(
@@ -319,6 +632,12 @@ manager.addAnswer(
   "Coucou ! Comment puis-je vous assister ?"
 );
 
+manager.addAnswer(
+  "fr",
+  "salutation",
+  "Salut 🤖, je suis Oli, le bot de la DIRECTION GENERALE DES STATISTIQUES DU GABON. Mon rôle est de te donner les informations dont tu as besoin! 📊✨"
+);
+
 // Ajouter des réponses pour les adieux
 manager.addAnswer("fr", "au_revoir", "Au revoir ! À bientôt.");
 manager.addAnswer("fr", "au_revoir", "Adieu ! Prenez soin de vous.");
@@ -404,7 +723,7 @@ manager.addAnswer(
   "description_dgs",
   "La Direction Générale de Statistiques (DGS) du Gabon, connue sous le sigle DGS, constitue une administration centrale du Ministère de l’Économie et de la Relance. Sa création et son organisation remontent au décret N° 00718/PR/MPAT du 31 mai 1983. Au fil du temps, la DGS a connu une évolution marquante avec l'établissement de la Direction des Études, de la Coordination Statistique et de l’Informatique, tandis que la Direction des Enquêtes et de la Démographie a été transformée en la Direction des Statistiques Démographiques. Bien que la loi N° 015/2014 ait institué et organisé le Système Statistique National, il convient de souligner que le décret N° 00718/PR/MPAT du 31 mai 1983 demeure la référence fondamentale pour définir les missions essentielles de la DGS."
 );
-manager.addDocument("fr", "population totale", "population");
+manager.addDocument("fr", "population totale du gabon", "population");
 manager.addDocument("fr", "urbain", "population_urbaine");
 manager.addDocument("fr", "rural", "population_rurale");
 manager.addDocument("fr", "tranches d'âge", "tranches_age");
@@ -434,7 +753,7 @@ manager.addDocument(
   "rural_masculin"
 );
 manager.addDocument("fr", "population rural féminin / femme", "rural_féminin");
-manager.addDocument("fr", "population rural total", "rural_total");
+manager.addDocument("fr", "population rurale totale / complète", "rural_total");
 
 // Ajouter des réponses pour les données démographiques
 manager.addAnswer(
@@ -546,7 +865,6 @@ manager.addDocument("fr", "Peux-tu répéter ?", "non_comprehension");
 manager.addDocument("fr", "Je n'ai pas saisi", "non_comprehension");
 manager.addDocument("fr", "Que veux-tu dire par là ?", "non_comprehension");
 
-
 manager.addAnswer(
   "fr",
   "non_comprehension",
@@ -560,66 +878,44 @@ manager.addDocument(
   "Comment contacter l'Institut National de la Statistique / DGS du Gabon ?",
   "coordonnees_contact"
 );
-manager.addDocument(
-  "fr",
-  "Téléphone et e-mail",
-  "coordonnees_contact"
-);
-manager.addDocument(
-  "fr",
-  "Informations de contact",
-  "coordonnees_contact"
-);
+manager.addDocument("fr", "Téléphone et e-mail / email", "coordonnees_contact");
+manager.addDocument("fr", "Informations de contact", "coordonnees_contact");
+
+manager.addDocument("fr", "contact", "coordonnees_contact");
 manager.addDocument("fr", "numéro téléphone", "coordonnees_contact");
 
 // Réponses pour les coordonnées de contact
 manager.addAnswer(
   "fr",
   "coordonnees_contact",
-  "Vous pouvez contacter DGS aux numéros de téléphone suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Vous pouvez également les joindre par fax au (+241) 720457. Pour les questions par e-mail, utilisez contact@instatgabon.org."
+  "Vous pouvez contacter DGS aux numéros de téléphone suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Vous pouvez également les joindre par fax au (+241) 720457. Pour les questions par e-mail, utilisez <a href='mailto:contact@instatgabon.org'>contact@instatgabon.org</a>."
 );
 manager.addAnswer(
   "fr",
   "coordonnees_contact",
-  "Les coordonnées de contact de Direction Générale de la Statistique / DGS sont les suivantes : Tél : (+241) 01720455 | 01721369 | 76 06 71, Fax : (+241) 720457, E-mail : contact@instatgabon.org."
+  "Les coordonnées de contact de Direction Générale de la Statistique / DGS sont les suivantes : Tél : (+241) 01720455 | 01721369 | 76 06 71, Fax : (+241) 720457, E-mail : <a href='mailto:contact@instatgabon.org'>contact@instatgabon.org</a>."
 );
 manager.addAnswer(
   "fr",
   "coordonnees_contact",
-  "Pour entrer en contact avec Direction Générale de la Statistique / DGS, vous pouvez les appeler aux numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Leur fax est le (+241) 720457, et l'e-mail de contact est contact@instatgabon.org."
+  "Pour entrer en contact avec Direction Générale de la Statistique / DGS, vous pouvez les appeler aux numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Leur fax est le (+241) 720457, et l'e-mail de contact est <a href='mailto:contact@instatgabon.org'>contact@instatgabon.org</a>."
 );
 manager.addAnswer(
   "fr",
   "coordonnees_contact",
-  "Les coordonnées de Direction Générale de la Statistique / DGS incluent les numéros de téléphone : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est le (+241) 720457, et l'adresse e-mail de contact est contact@instatgabon.org."
+  "Les coordonnées de Direction Générale de la Statistique / DGS incluent les numéros de téléphone : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est le (+241) 720457, et l'adresse e-mail de contact est <a href='mailto:contact@instatgabon.org'>contact@instatgabon.org</a>"
 );
 manager.addAnswer(
   "fr",
   "coordonnees_contact",
-  "Si vous avez besoin de contacter Direction Générale de la Statistique / DGS, vous pouvez le faire en utilisant les numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est également disponible au (+241) 720457, et l'e-mail de contact est contact@instatgabon.org."
+  "Si vous avez besoin de contacter Direction Générale de la Statistique / DGS, vous pouvez le faire en utilisant les numéros suivants : (+241) 01720455, (+241) 01721369, (+241) 760671. Le fax est également disponible au (+241) 720457, et l'e-mail de contact est <a href='mailto:contact@instatgabon.org'>contact@instatgabon.org</a>"
 );
 
 // Document pour l'emplacement de l'Institut National de la Statistique du Gabon
-manager.addDocument(
-  "fr",
-  "Où est situé ?",
-  "localisation_instat"
-);
-manager.addDocument(
-  "fr",
-  "Adresse ",
-  "localisation_instat"
-);
-manager.addDocument(
-  "fr",
-  "Emplacement de DGS",
-  "localisation_instat"
-);
-manager.addDocument(
-  "fr",
-  "Donnez-moi l'adresse ",
-  "localisation_instat"
-);
+manager.addDocument("fr", "Où est situé ?", "localisation_instat");
+manager.addDocument("fr", "Adresse ", "localisation_instat");
+manager.addDocument("fr", "Emplacement de DGS", "localisation_instat");
+manager.addDocument("fr", "Donnez-moi l'adresse ", "localisation_instat");
 
 // Réponses pour l'emplacement de l'Institut National de la Statistique du Gabon
 manager.addAnswer(
@@ -650,12 +946,8 @@ manager.addAnswer(
 
 // Document pour répondre à la question "Vous êtes où ?"
 manager.addDocument("fr", "Vous êtes où ?", "emplacement_instat");
-manager.addDocument("fr", "Où est situé votre bureau ?", "emplacement_instat");
-manager.addDocument(
-  "fr",
-  "Localisation de votre institution",
-  "emplacement_instat"
-);
+manager.addDocument("fr", "Où est bureau ?", "emplacement_instat");
+manager.addDocument("fr", "Localisation de institution", "emplacement_instat");
 
 // Réponses pour la question "Vous êtes où ?"
 manager.addAnswer(
@@ -681,10 +973,28 @@ manager.addAnswer(
 // (async () => {
 //     const response = await manager.process('fr', 'Bonjour');
 //     console.log(response);
+
 // })();
 
 manager.train().then(async () => {
   manager.save();
+
+  const defaultMessages = [
+    "Désolé, je ne saisis pas bien votre demande. Pouvez-vous reformuler? 😅",
+    "Excusez-moi, je n'ai pas compris votre question. Pourriez-vous la reformuler, s'il vous plaît? 🤔",
+    "Oh non, je n'ai pas tout à fait compris. Pourriez-vous reformuler votre demande? 🔄",
+    "Mes excuses, votre question me pose problème. Pouvez-vous la reformuler, s'il vous plaît? 🙇‍♂️",
+    "Oops, ça ne sonne pas clair pour moi. Pourriez-vous reformuler votre question? 🤷‍♂️",
+    "Je suis désolé, la compréhension de votre demande me pose problème. Pouvez-vous la reformuler? 🤖",
+    "Oups, quelque chose ne va pas avec ma compréhension. Pouvez-vous reformuler votre question? 🔄",
+    "Pardon, je n'ai pas bien saisi. Pouvez-vous reformuler votre question? 🧐",
+    "Hmm, je suis perplexe. Pourriez-vous reformuler votre demande, s'il vous plaît? 🔄",
+    "Désolé, mais je ne parviens pas à comprendre. Pouvez-vous reformuler votre question? 🤨"
+  ];
+  
+  function getRandomDefaultMessage() {
+    const randomIndex = Math.floor(Math.random() * defaultMessages.length);
+    return defaultMessages[randomIndex];}
 
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
@@ -692,11 +1002,10 @@ manager.train().then(async () => {
 
   app.get("/bot", async (req, res) => {
     let response = await manager.process("fr", req.query.message);
+    let botReponse = response.answer || getRandomDefaultMessage();
 
     res.json({
-      bot:
-        response.answer ||
-        "Cela fait seulement Quelques heures que j'ai été entrainnée, veillez m'excuser si je ne réponds pas aux questions",
+      bot: (!response.answer ? (`${botReponse} , <hr />\n \n votre demande: <b>${req.query.message}</b>`) : (response.answer)), 
       moi: req.query.message,
     });
   });
@@ -704,3 +1013,5 @@ manager.train().then(async () => {
   console.log("http://localhost:3000/");
   app.listen(3000);
 });
+
+
