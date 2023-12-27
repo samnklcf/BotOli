@@ -10,7 +10,7 @@ app.use("/images", express.static("public/images"));
 // ------------------------------Doc1------------------------------------------
 manager.addDocument(
   "fr",
-  "Quelle est la perception de la pauvreté ?",
+  "Quelle est la perception de la pauvreté au Gabon?",
   "perceptionPauvrete"
 );
 manager.addDocument(
@@ -26,7 +26,7 @@ manager.addDocument(
 manager.addDocument("fr", "La pauvreté au Gabon ?", "GabPauvrete");
 manager.addDocument(
   "fr",
-  "Comment la pauvreté est-elle perçue ",
+  "Comment la pauvreté est-elle perçue par les gabonais ",
   "perceptionPauvrete"
 );
 manager.addAnswer(
@@ -307,7 +307,7 @@ manager.addDocument(
 );
 manager.addDocument(
   "fr",
-  "l’instabilité du revenu / argent est plus prononcée / forte en milieu rural / campagne / village ?",
+  "l’instabilité du revenu est-il plus prononcée  en milieu rural / campagne / village ?",
   "stabilite_revenus"
 );
 manager.addAnswer(
@@ -373,7 +373,7 @@ manager.addDocument(
 );
 manager.addDocument(
   "fr",
-  "les ménages au Gabon comptent davantage sur leur voisinage que sur les associations religieuses en cas de difficulté ?",
+  "Les ménages au Gabon comptent-ils davantage sur leur voisinage que sur les associations religieuses en cas de difficulté ?",
   "aide_difficulte"
 );
 manager.addAnswer(
@@ -412,7 +412,7 @@ manager.addAnswer(
 // -----------------------Role de la DGS--------------------
 manager.addDocument(
   "fr",
-  "Qui est le directeur général/chef/responsable de la DGS / Direction Générale des statistiques ?",
+  "Qui est le directeur général / chef / responsable de la DGS / Direction Générale des statistiques ?",
   "directeurGeneralDGS"
 );
 manager.addAnswer(
@@ -746,13 +746,13 @@ manager.addDocument(
   "population urbain féminin / femme",
   "urbain_féminin"
 );
-manager.addDocument("fr", "population urbain total", "urbain_total");
+manager.addDocument("fr", "population urbain totale", "urbain_total");
 manager.addDocument(
   "fr",
   "population rural masculin / homme",
   "rural_masculin"
 );
-manager.addDocument("fr", "population rural féminin / femme", "rural_féminin");
+manager.addDocument("fr", "population rurale féminine / femme", "rural_féminin");
 manager.addDocument("fr", "population rurale totale / complète", "rural_total");
 
 // Ajouter des réponses pour les données démographiques
@@ -991,10 +991,72 @@ manager.train().then(async () => {
     "Hmm, je suis perplexe. Pourriez-vous reformuler votre demande, s'il vous plaît? 🔄",
     "Désolé, mais je ne parviens pas à comprendre. Pouvez-vous reformuler votre question? 🤨"
   ];
+
+  const defaulQuestion = [
+    "Qui est le pésident du Gabon",
+    "Qui est le chef de la dgs",
+    "La population du Gabon en 2013",
+    "Quelle est la Localisation de institution",
+    "Quelle est notre Adresse",
+    "Emplacement de DGS",
+    "Quelle est la population du Gabon",
+    "Téléphone et e-mail",
+    "Peux-tu me dire comment la population des provinces du Gabon a changé au fil du temps ?",
+   " Donne-moi des informations sur la population des provinces / progression / évolution démographique du Gabon entre 1960 et 2013",
+   "Quelle est l'évolution démographique des provinces du Gabon depuis 1960 ?",
+   "population rurale féminine?",
+   "population rurale complète",
+   "Quelle est la les fonctions de la DGS?",
+   "Quelles sont Les missions de la DGS",
+   "Explique moi la DGS", 
+   "Quelle est la mission de la DGS ?",
+   "Parle-moi de la DGS / Direction Générale Statistique?",
+   "Quelle est La progression de DGS au fil du temps ?",
+   "Qui est le directeur général adjoint de la DGS ?",
+   "Qui est le directeur général / chef / responsable de la DGS / Direction Générale des statistiques ?",
+   "les actions prioritaires pour améliorer les conditions de vie ?",
+   "Les ménages au Gabon comptent-ils davantage sur leur voisinage que sur les associations religieuses en cas de difficulté ?",
+   "les ménages s’attendent-ils à recevoir de l’aide en période difficile ",
+   "Pourquoi la participation associative a-t-elle diminué au Gabon ?",
+   "Pourquoi l’accès à l’eau courante et à l’électricité est-il si important au Gabon ?",
+   "Quelles sont les besoins minimums pour une vie correcte ?",
+   "l’instabilité du revenu est-il plus prononcée  en milieu rural / campagne / village ?",
+   "Quelle est la perception de la pauvreté au Gabon",
+   "Comment les gens voient-ils la pauvreté ?",
+   "La pauvreté au Gabon",
+   "Tableau de la répartition des ménages",
+   "Quels facteurs sont associés à la pauvreté?",
+   "Les causes la pauvreté ?",
+   "La perception  de la pauvreté a-t-elle changé ?",
+   "Comment a évolué le niveau de vie au Gabon ?",
+  "quel est le niveau de vie en milieu rural?",
+  "Pourquoi le niveau de vie en milieu rural est plus dégradé ?",
+  "Pourquoi le niveau de vie en région de Port-Gentil est plus dégradé ?"
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+  ]
+
+  function getRandomDefaultQuestion() {
+    const randomIndex = Math.floor(Math.random() * defaulQuestion.length);
+    return defaulQuestion[randomIndex];}
   
   function getRandomDefaultMessage() {
     const randomIndex = Math.floor(Math.random() * defaultMessages.length);
     return defaultMessages[randomIndex];}
+
+  
 
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
@@ -1005,8 +1067,10 @@ manager.train().then(async () => {
     let botReponse = response.answer || getRandomDefaultMessage();
 
     res.json({
-      bot: botReponse, 
+      bot: botReponse,
       moi: req.query.message,
+      question1: getRandomDefaultQuestion(),
+      question2: getRandomDefaultQuestion()
     });
   });
 
