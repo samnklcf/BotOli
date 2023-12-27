@@ -164,6 +164,15 @@ manager.addDocument(
   "Quels facteurs sont associés à la pauvreté?",
   "facteursPauvrete"
 );
+
+manager.addDocument(
+  "fr",
+  "La population du gabon en 2017",
+  "population2017"
+);
+
+manager.addAnswer("fr","population2017" ,"population du gabon en 2017 était de 2 140 215")
+
 manager.addDocument("fr", "Les causes la pauvreté ?", "facteursPauvrete");
 manager.addAnswer(
   "fr",
@@ -723,7 +732,7 @@ manager.addAnswer(
   "description_dgs",
   "La Direction Générale de Statistiques (DGS) du Gabon, connue sous le sigle DGS, constitue une administration centrale du Ministère de l’Économie et de la Relance. Sa création et son organisation remontent au décret N° 00718/PR/MPAT du 31 mai 1983. Au fil du temps, la DGS a connu une évolution marquante avec l'établissement de la Direction des Études, de la Coordination Statistique et de l’Informatique, tandis que la Direction des Enquêtes et de la Démographie a été transformée en la Direction des Statistiques Démographiques. Bien que la loi N° 015/2014 ait institué et organisé le Système Statistique National, il convient de souligner que le décret N° 00718/PR/MPAT du 31 mai 1983 demeure la référence fondamentale pour définir les missions essentielles de la DGS."
 );
-manager.addDocument("fr", "population totale du gabon / gabonaise", "population");
+manager.addDocument("fr", "population totale du gabon", "population");
 manager.addDocument("fr", "urbain", "population_urbaine");
 manager.addDocument("fr", "rural", "population_rurale");
 manager.addDocument("fr", "tranches d'âge", "tranches_age");
@@ -755,36 +764,11 @@ manager.addDocument(
 manager.addDocument("fr", "population rurale féminine / femme", "rural_féminin");
 manager.addDocument("fr", "population rurale totale / complète", "rural_total");
 
-
-
 // Ajouter des réponses pour les données démographiques
-manager.addDocument("fr", "population en 1960", "population1960");
-
-manager.addDocument("fr", "population en 1993", "population1993");
-manager.addDocument("fr", "population en 2013", "population2013");
-manager.addDocument("fr", "population en 2023", "population2023");
-
-manager.addAnswer("fr", "population1960", "La population du Gabon en 1960 était de: 513 340 habitants")
-manager.addAnswer("fr", "population1993", "La population du Gabon en 1993 était de: 1 065 390 habitants")
-manager.addAnswer("fr", "population2013", "La population du Gabon en 2013 était de: 1 902 226 habitants")
-manager.addAnswer("fr", "population2023", "La population du Gabon en 2023 est environ de: 2 388 992 habitants.")
-
-
 manager.addAnswer(
   "fr",
   "population",
-  `La population de quelle année souhaitez-vous connaître ? <br /><br />
-  <h6>Choississez: </h6>
-  <ul>
-  
-  <li class="suggested-question ">en 1960</li>
-
-  <li class="suggested-question ">en 1993</li>
-
-  <li class="suggested-question ">en 2013</li>
-  <li class="suggested-question ">en 2023</li>
-  </ul>
-  `
+  "La population totale du Gabon est de 1 811 079 personnes."
 );
 manager.addAnswer(
   "fr",
@@ -1088,15 +1072,34 @@ manager.train().then(async () => {
   });
 
   app.get("/bot", async (req, res) => {
-    let response = await manager.process("fr", req.query.message);
-    let botReponse = response.answer || getRandomDefaultMessage();
 
-    res.json({
-      bot: botReponse,
-      moi: req.query.message,
-      question1: getRandomDefaultQuestion(),
-      question2: getRandomDefaultQuestion()
-    });
+    const userMessage = req.query.message;
+
+    // Vérifier si la question concerne la population du Gabon
+    if (
+      userMessage.toLowerCase().includes("population") &&
+      userMessage.toLowerCase().includes("gabon")
+    ) {
+      // Poser la question sur l'année
+      res.json({
+        bot: "La population de quelle année souhaitez-vous connaître ?",
+        moi: userMessage,
+        question1: "en 2017",
+        question2: "La population du gabon en 2023",
+        question3: "La population du gabon en 20"
+      });
+    } else {
+      // Si ce n'est pas une question sur la population du Gabon, procéder normalement
+      let response = await manager.process("fr", userMessage);
+      let botResponse = response.answer || getRandomDefaultMessage();
+  
+      res.json({
+        bot: botResponse,
+        moi: userMessage,
+        question1: getRandomDefaultQuestion(),
+        
+      });
+    }
   });
 
   console.log("http://localhost:3000/");
