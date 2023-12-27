@@ -12,6 +12,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://oli-bot.onrender.com/alissabot_nk.js"></script>
+
 
     <style>
       body {
@@ -69,7 +71,7 @@
       }
 
       .message-text {
-        max-width: 70%; /* Ajustez la largeur maximale selon vos préférences */
+        max-width: 100%; /* Ajustez la largeur maximale selon vos préférences */
         word-wrap: break-word;
       }
 
@@ -89,26 +91,55 @@
         border-top: 1px solid #ddd;
         background-color: #fff;
       }
+      .haut {
+        margin-top: 30px;
+      }
+
+      .suggested-questions {
+        white-space: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+
+        display: flex;
+        margin-top: 30px
+      }
+    
+      .suggested-question {
+        margin-right: 10px;
+        cursor: pointer;
+        color: rgb(58, 58, 237);
+        padding: 10px;
+        border-radius: 15px;
+        font-weight: 600;
+        font-size: 12px;
+
+      }
     </style>
   </head>
   <body>
     <div class="container chat-container">
       <div class="chat" id="chatList">
-        <b
+        <a href="https://alissa-ia.netlify.app"
           ><i
             ><small
-              >By <span class="text-primary">Alissa</span>
-              <span class="text-warning">ia</span></small
+              ><span>Powered by</span> <span class="text-primary"><b>ALISSA</b></span>
+              <span class="text-warning"><b>IA</b></span></small
             ></i
-          ></b
+          ></a
         >
+        
         <hr />
-
+        
         <div class="message message-left">
+          <img src="/images/chatbot.gif" class="img-fluid mt-10" width="40px" style="border-radius: 100%;">
           <div class="message-text"><i>Bonjour 😊...</i></div>
         </div>
+        
       </div>
+      
+      
       <div class="message-form">
+        
         <form id="chatForm">
           <div class="form-row align-items-center">
             <div class="col-9">
@@ -120,6 +151,7 @@
                 required
               />
             </div>
+            
             <div class="col-3">
               <button type="submit" class="btn btn-primary btn-block">
                 <span class="text-white"><i class="fa fa-send"></i></span>
@@ -140,52 +172,62 @@
           sendMessage();
         });
 
+        $(document).on("click", ".suggested-question", function () {
+          const suggestedQuestion = $(this).text();
+          $("#userInput").val(suggestedQuestion);
+          sendMessage();
+          $(this).remove();
+        });
+    
         function sendMessage() {
           const userInput = $("#userInput").val();
-
+          $("#userInput").val("");
+    
           $.get(`/bot?message=${userInput}`, function (data) {
             // Affichez le message "moi" immédiatement
             const chatList = $("#chatList");
             const myMessage = `
-                    <div class="message message-right">
-                        <div class="message-text">${data.moi}</div>
-                    </div>
-                `;
+              <hr />
+              <div class="message message-right haut">
+                <div class="message-text">${data.moi}</div>
+              </div>
+            `;
             chatList.append(myMessage);
-
+    
             // Ajoutez une latence de 500 millisecondes (0.5 seconde) avant la réponse de "data.bot"
             setTimeout(function () {
               // Affichez la réponse du bot lettre par lettre
-              const botMessageContainer = $(
-                '<div class="message message-left">'
-              );
+              const botMessageContainer = $('<div class="message message-left"> ');
               chatList.append(botMessageContainer);
-
+    
               const botMessageText = data.bot;
               let index = 0;
-
+    
               const intervalId = setInterval(function () {
                 const partialMessage = botMessageText.slice(0, index + 1);
                 botMessageContainer.html(
-                  `<div class="message-text"><i>${partialMessage}</i></div>`
+                  `<img src="/images/chatbot.gif" class="img-fluid mt-10" width="40px" style="border-radius: 100%;"><br /><br /><div class="message-text "><i>${partialMessage}</i>
+                  <br/>
+                  <br />
+
+                  <div class="suggested-questions">
+
+                    <span class="suggested-question btn btn-outline-danger">Sugg: ${data.question1}</span>
+                    
+                  </div>
+                </div>`
                 );
                 chatList.scrollTop(chatList[0].scrollHeight);
-
+    
                 index++;
-
+    
                 if (index === botMessageText.length) {
                   clearInterval(intervalId);
-
+    
                   // Faire défiler automatiquement vers le bas avec une animation fluide
-                  chatList.animate(
-                    { scrollTop: chatList[0].scrollHeight },
-                    800
-                  );
+                  chatList.animate({ scrollTop: chatList[0].scrollHeight }, 800);
                 }
-              }, 10); // Ajoutez une lettre toutes les 100 millisecondes
-
-              // Effacez le champ de saisie après l'envoi du message
-              $("#userInput").val("");
+              }, 1); // Ajoutez une lettre toutes les 100 millisecondes
             }, 500);
           });
         }
