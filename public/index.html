@@ -17,13 +17,13 @@
     <style>
       body {
         font-family: "Arial", sans-serif;
-        background-color: #f8f9fa;
+        background-color: #FFFFFA;
         margin: 0;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        
+        color: #011936;
         
       }
 
@@ -46,7 +46,7 @@
         position: relative;
         padding: 10px;
         margin-bottom: 10px;
-        border-radius: 5px;
+        border-radius: 15px;
       }
 
       .message-left::before,
@@ -75,8 +75,9 @@
       }
 
       .message-left {
-        background-color: #e9ecef;
+        background-color: #DEE7E7;
         text-align: left;
+        padding: 0 20px 0 20px
       }
 
       .message-right {
@@ -100,18 +101,21 @@
         padding: 10px;
 
         display: flex;
-        margin-top: 30px
+        margin-top: 30px;
       }
-    
+
       .suggested-question {
         margin-right: 10px;
         cursor: pointer;
-        color: rgb(58, 58, 237);
+        color:#DEE7E7;
         padding: 10px;
         border-radius: 15px;
         font-weight: 600;
         font-size: 12px;
-
+        background: #011936;
+      }
+      .back {
+        background: #DEE7E7 !important;
       }
     </style>
   </head>
@@ -121,24 +125,28 @@
         <a href="https://alissa-ia.netlify.app"
           ><i
             ><small
-              ><span>Powered by</span> <span class="text-primary"><b>ALISSA</b></span>
+              ><span>Powered by</span>
+              <span class="text-primary"><b>ALISSA</b></span>
               <span class="text-warning"><b>IA</b></span></small
             ></i
           ></a
         >
-        
+
         <hr />
-        
-        <div class="message message-left">
-          <img src="/images/chatbot.gif" class="img-fluid mt-10" width="40px" style="border-radius: 100%;">
+
+        <div class="message message-left ">
+          
+          <img
+            src="/images/chatbot.gif"
+            class="img-fluid mt-10"
+            width="40px"
+            style="border-radius: 100%"
+          />
           <div class="message-text"><i>Bonjour 😊...</i></div>
         </div>
-        
       </div>
-      
-      
+
       <div class="message-form">
-        
         <form id="chatForm">
           <div class="form-row align-items-center">
             <div class="col-9">
@@ -150,7 +158,7 @@
                 required
               />
             </div>
-            
+
             <div class="col-3">
               <button type="submit" class="btn btn-primary btn-block">
                 <span class="text-white"><i class="fa fa-send"></i></span>
@@ -160,8 +168,6 @@
         </form>
       </div>
     </div>
-
-    
 
     <script>
       $(document).ready(function () {
@@ -177,11 +183,11 @@
           sendMessage();
           $(this).remove();
         });
-    
+
         function sendMessage() {
           const userInput = $("#userInput").val();
           $("#userInput").val("");
-    
+
           $.get(`/bot?message=${userInput}`, function (data) {
             // Affichez le message "moi" immédiatement
             const chatList = $("#chatList");
@@ -192,16 +198,18 @@
               </div>
             `;
             chatList.append(myMessage);
-    
+
             // Ajoutez une latence de 500 millisecondes (0.5 seconde) avant la réponse de "data.bot"
             setTimeout(function () {
               // Affichez la réponse du bot lettre par lettre
-              const botMessageContainer = $('<div class="message message-left"> ');
+              const botMessageContainer = $(
+                '<div class="message message-left"> '
+              );
               chatList.append(botMessageContainer);
-    
+
               const botMessageText = data.bot;
               let index = 0;
-    
+
               const intervalId = setInterval(function () {
                 const partialMessage = botMessageText.slice(0, index + 1);
                 botMessageContainer.html(
@@ -211,20 +219,23 @@
 
                   <div class="suggested-questions">
 
-                    <span class="suggested-question btn btn-outline-danger">Sugg: ${data.question1}</span>
+                    <span class="suggested-question ">Sugg: ${data.question1}</span>
                     
                   </div>
                 </div>`
                 );
                 chatList.scrollTop(chatList[0].scrollHeight);
-    
+
                 index++;
-    
+
                 if (index === botMessageText.length) {
                   clearInterval(intervalId);
-    
+
                   // Faire défiler automatiquement vers le bas avec une animation fluide
-                  chatList.animate({ scrollTop: chatList[0].scrollHeight }, 800);
+                  chatList.animate(
+                    { scrollTop: chatList[0].scrollHeight },
+                    800
+                  );
                 }
               }, 1); // Ajoutez une lettre toutes les 100 millisecondes
             }, 500);
@@ -232,7 +243,5 @@
         }
       });
     </script>
-
-    
   </body>
 </html>
