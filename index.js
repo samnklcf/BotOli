@@ -786,6 +786,73 @@ manager.addAnswer(
   </ul>
   `
 );
+
+manager.addDocument("fr", "La population  du gabon par province / dans chaque province / pour chaque province", "parprovince")
+manager.addDocument("fr", "Démographie  du gabon par province / dans chaque province / pour chaque province", "parprovince")
+
+
+manager.addAnswer("fr", "parprovince", `
+<div class="container mt-5">
+    <h5>Données démographiques du Gabon par province</h5>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Province</th>
+          <th>Population</th>
+          <th>Superficie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Estuaire</td>
+          <td>895,689 habitants</td>
+          <td>20,740 km²</td>
+        </tr>
+        <tr>
+          <td>Haut-Ogooué</td>
+          <td>250,799 habitants</td>
+          <td>36,547 km²</td>
+        </tr>
+        <tr>
+          <td>Ogooué-Maritime</td>
+          <td>157,562 habitants</td>
+          <td>22,890 km²</td>
+        </tr>
+        <tr>
+          <td>Woleu-Ntem</td>
+          <td>154,986 habitants</td>
+          <td>38,465 km²</td>
+        </tr>
+        <tr>
+          <td>Ngounié</td>
+          <td>100,838 habitants</td>
+          <td>37,750 km²</td>
+        </tr>
+        <tr>
+          <td>Moyen-Ogooué</td>
+          <td>69,287 habitants</td>
+          <td>18,535 km²</td>
+        </tr>
+        <tr>
+          <td>Ogooué-Lolo</td>
+          <td>65,771 habitants</td>
+          <td>25,380 km²</td>
+        </tr>
+        <tr>
+          <td>Ogooué-Ivindo</td>
+          <td>63,293 habitants</td>
+          <td>46,075 km²</td>
+        </tr>
+        <tr>
+          <td>Nyanga</td>
+          <td>52,854 habitants</td>
+          <td>21,285 km²</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+`)
+
 manager.addAnswer(
   "fr",
   "population_urbaine",
