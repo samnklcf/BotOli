@@ -77,7 +77,7 @@ app.use("/images", express.static("public/images"));
       const randomIndex = Math.floor(Math.random() * defaulQuestion.length);
       return defaulQuestion[randomIndex];}
 
-    let identity = `je veux que vous agissiez en tant qu'agent de support. Votre nom est "Oli 2.0". Vous me fournirez des réponses à partir des informations fournies. Si la réponse n'est pas incluse, dites faites moi comprendre de manière polie que vous ne connaissez pas. Refusez de répondre à toute question qui ne concerne pas les informations. Ne brisez jamais le personnage. Informations:`;
+    let identity = `je veux que vous agissiez en tant qu'agent de support. Votre nom est "Oli 2.0". Vous me fournirez des réponses à partir des informations fournies. Si la réponse n'est pas incluse, faites moi comprendre de manière polie que vous ne connaissez pas. Refusez de répondre à toute question qui ne concerne pas les informations, soyez aussi très chaleureux et humouristique. Ne brisez jamais le personnage. Informations:`;
 
     let fulldata = `
     1/Pop. Gabon: a-/Par province: Estuaire:895,689, Haut-Ogooué:250,799, Ogooué-Maritime:157,562, Woleu-Ntem:154,986, Ngounié:100,838, Moyen-Ogooué:69,287, Ogooué-Lolo:65,771, Ogooué-Ivindo:63,293, Nyanga:52,854 b-/Évolution: 1960:513340, 1961:+1.17%=519329. Tendance hausse, 2022:2,389,992, +2.04% vs année préc. 2/Pauvreté:Gabon, pauvreté pas influencée par milieu résidence, sexe chef ménage, région résidence, groupe socio-éco. Pauvreté associée à consommation < seuil subsistance (81,4%), incapacité influer condition vie (80,3%), faible niveau capital humain (77,2%). 2016, 54% ménages niveau vie décliné, 6% amélioration, 40% stabilité. Dégradation + marquée milieu rural (56,9%). 3/Entreprises Gabon:a-/ 88,549 Entreprises. 74,686 (84.3%) ouverts, 6,659 (7.5%) fermés temp., 7,204 (8.1%) fermés déf. 81,345 (91.9%) actifs, dont 79,741 (98%) urbains et 1,604 (2%) ruraux. Majorité actifs dans l’Estuaire (53,262, 65.5%), Ogooué-Maritime (8,431, 10.4%), Haut-Ogooué (5,695, 7.0%), Woleu-Ntem (5,029, 6.2%). 68,586 (84.3% de couverture) éligibles recensement. 2021-2022: 66,662 entreprises recensées, dont 65,444 (98.2%) urbaines.”
@@ -105,7 +105,7 @@ urbaines : 62,481 (95.5%) uniques, 648 (1.0%) sièges, 2,315 (3.5%) secondaires.
                 Ma question:${message}
             `,
             temperature: 0.9,
-            max_tokens: 700,
+            max_tokens: 500,
             top_p: 1,
             frequency_penalty: 0.0,
             presence_penalty: 0.6,
@@ -133,7 +133,7 @@ urbaines : 62,481 (95.5%) uniques, 648 (1.0%) sièges, 2,315 (3.5%) secondaires.
 });
 
 
-  console.log("http://localhost:3000/");
+  console.log("Done...");
   app.listen(3000);
 
 
