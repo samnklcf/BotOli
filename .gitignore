@@ -143,4 +143,6 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 ./public/ilr.html
-./public/
+/index copy.html
+
+
